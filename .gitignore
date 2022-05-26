@@ -1,0 +1,12 @@
+*.annot
+*.cmxs
+*.cmxa
+*.cma
+*.cmi
+*.a
+*.o
+*.log
+oUnit*
+ft_ality
+check
+obj/
