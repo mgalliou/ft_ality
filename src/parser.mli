@@ -1,1 +1,1 @@
-val tokenize : string -> unit
+val parse_grammar : string -> Combo.t list

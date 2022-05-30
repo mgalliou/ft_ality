@@ -11,7 +11,10 @@ TST_DIR       = test
 OBJ_DIR       = obj
 SRC_NAME      = \
 				move.ml\
+				combo.ml\
 		        parser.ml\
+		        machine.ml\
+		        game.ml\
 		        ft_ality.ml
 INT_NAME      = $(SRC_NAME:.ml=.mli)
 TST_NAME      = \

@@ -25,7 +25,7 @@ let to_string move =
   | Tag -> "Tag"
   | Flip_Stance -> "Flip Stance"
 
-let key move =
+let key_from_move move =
   match move with
   | Left -> Sdlkeycode.Left
   | Right -> Sdlkeycode.Right

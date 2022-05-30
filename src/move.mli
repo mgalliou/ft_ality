@@ -2,4 +2,4 @@ type t
 
 val to_string : t -> string
 
-val key : t -> Sdlkeycode.t
+val key_from_move : t -> Sdlkeycode.t
