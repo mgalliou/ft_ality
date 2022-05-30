@@ -24,6 +24,20 @@ let to_string move =
   | Throw -> "Throw"
   | Tag -> "Tag"
   | Flip_Stance -> "Flip Stance"
+  
+let from_string move =
+  match move with
+  | "Left" -> Left
+  | "Right" -> Right
+  | "Up" -> Up
+  | "Down" -> Down
+  | "[FP]" -> Front_Punch
+  | "[BP]" -> Back_Punch
+  | "[FK]" -> Front_Kick
+  | "[BK]" -> Back_Kick
+  | "Throw" -> Throw
+  | "Tag" -> Tag
+  | "Flip Stance" -> Flip_Stance
 
 let key_from_move move =
   match move with
