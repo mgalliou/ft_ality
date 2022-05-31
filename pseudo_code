@@ -1,0 +1,39 @@
+read grammar file:
+	store combos as list of list of move (string)
+	store keybind (alphabet) as list of key:value (keycode:name)
+generate machine:
+	alphabet is keybind.name
+	states are all combos and incomplete complete combos
+	start is empty combo (idle)
+	recog are all complete combo
+run machine:
+	read keyboard event:
+		when idle:
+			ignore keyup event
+			for each keydown event, search for combos starting with pressed key
+			 	if yes 
+					if first move 
+						add correspondig move to current move list in combos
+					if not
+						search for valid combo with pressed move added to its last move list
+							if yes continue
+							if not go back to idle
+				if not go back to idle
+			for each keyup event, search for corresponding move in current combo's move list (key comb)
+				if yes 
+					add it to tracked released move
+				if 
+					no ignore
+				when all current combo's move list are in tracked released move
+					open new move list in current combo and go back to first for loop
+
+
+
+
+			
+
+			
+
+	
+
+

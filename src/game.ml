@@ -1,12 +1,18 @@
 let process_keydown_event (e : Sdlevent.keyboard_event) =
+  (*
   match e.keycode |> Move.from_keycode with
   | Move.Unknown -> ()
   | _ -> print_endline ((Sdlkeycode.to_string e.keycode) ^ " " ^ (e.ke_state |> Sdlevent.string_of_state))
+*)
+ ()
 
 let process_keyup_event (e : Sdlevent.keyboard_event) =
+  (*
   match e.keycode |> Move.from_keycode with
   | Move.Unknown -> ()
   | _ -> print_endline ((Sdlkeycode.to_string e.keycode) ^ " " ^ (e.ke_state |> Sdlevent.string_of_state))
+*)
+ ()
 
 let match_event e = 
   match e with

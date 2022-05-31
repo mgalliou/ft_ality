@@ -3,8 +3,9 @@ type t = {
   input : Move.t list list
 }
 
-let _new name input =
-  {
-    name = name;
-    input = input
-  }
+let _new name input = {
+  name = name;
+  input = input
+}
+
+

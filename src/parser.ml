@@ -27,7 +27,7 @@ let get_file file =
   s
 
 let parse_grammar grammar_file =
-  let ( bindings, combos) = split_grammar (get_file grammar_file) in
+  let bindings, combos = split_grammar (get_file grammar_file) in
   let bindings = get_bindings bindings in
   let combos = get_combos combos bindings in
   bindings, combos
