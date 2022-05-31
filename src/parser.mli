@@ -1,1 +1,1 @@
-val parse_grammar : string -> Combo.t list
+val parse_grammar : string -> Move.t list * Combo.t list
