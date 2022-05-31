@@ -12,8 +12,8 @@ type t =
   | Flip_Stance
   | Unknown
 
-let to_string move =
-  match move with
+let to_string m =
+  match m with
   | Left -> "Left"
   | Right -> "Right"
   | Up -> "Up"
@@ -25,10 +25,10 @@ let to_string move =
   | Throw -> "Throw"
   | Tag -> "Tag"
   | Flip_Stance -> "Flip Stance"
-  | Unkown -> "Unkown"
+  | Unknown -> "Unknown"
   
-let from_string move =
-  match move with
+let from_string s =
+  match s with
   | "Left" -> Left
   | "Right" -> Right
   | "Up" -> Up
@@ -40,10 +40,10 @@ let from_string move =
   | "Throw" -> Throw
   | "Tag" -> Tag
   | "Flip Stance" -> Flip_Stance
-  | _ -> Unkown
+  | _ -> Unknown
 
-let to_keycode move =
-  match move with
+let to_keycode m =
+  match m with
   | Left -> Sdlkeycode.Left
   | Right -> Sdlkeycode.Right
   | Up -> Sdlkeycode.Up
@@ -55,7 +55,7 @@ let to_keycode move =
   | Throw -> Sdlkeycode.A
   | Tag -> Sdlkeycode.E
   | Flip_Stance -> Sdlkeycode.W
-  | Unkown -> Sdlkeycode.Unknown
+  | Unknown -> Sdlkeycode.Unknown
 
 let from_keycode kc =
   match kc with
@@ -70,4 +70,4 @@ let from_keycode kc =
   | Sdlkeycode.A -> Throw
   | Sdlkeycode.E -> Tag
   | Sdlkeycode.W -> Flip_Stance
-  | Sdlkeycode.Unknown -> Unknown
+  | _ -> Unknown

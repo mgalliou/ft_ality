@@ -1,19 +1,15 @@
+let process_keydown_event (e : Sdlevent.keyboard_event) =
+  match e.keycode |> Move.from_keycode with
+  | Move.Unknown -> ()
+  | _ -> print_endline ((Sdlkeycode.to_string e.keycode) ^ " " ^ (e.ke_state |> Sdlevent.string_of_state))
 
-let process_keydown_event e =
-  match Sdlkeycode.keycode |> Move.from_keycode
-  | Move.Unkown -> ();
-  | _ -> 
-  (*debug)
-  print_endline ((Sdlkeycode.to_string e.keycode) ^ " " ^ (e.ke_state |> Sdlevent.string_of_state))
-  *)
+let process_keyup_event (e : Sdlevent.keyboard_event) =
+  match e.keycode |> Move.from_keycode with
+  | Move.Unknown -> ()
+  | _ -> print_endline ((Sdlkeycode.to_string e.keycode) ^ " " ^ (e.ke_state |> Sdlevent.string_of_state))
 
-let process_keyup_event e =
-  (*debug)
-  print_endline ((Sdlkeycode.to_string e.keycode) ^ " " ^ (e.ke_state |> Sdlevent.string_of_state))
-  *)
-  ()
-
-let match_event = function
+let match_event e = 
+  match e with
   | Sdlevent.Quit _ -> Sdl.quit (); exit 0;
   | Sdlevent.KeyDown e -> process_keydown_event e
   | Sdlevent.KeyUp e -> process_keyup_event e
@@ -21,7 +17,7 @@ let match_event = function
 
 let rec key_loop () = 
   match Sdlevent.poll_event () with
-  | None -> (); key_loop()
+  | None -> (); key_loop ()
   | Some e -> match_event e; key_loop ()
 
 let read_user_input () =
