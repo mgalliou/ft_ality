@@ -1,11 +1,21 @@
+let print_combo combos =
+  print_endline "Combos:";
+  List.iter (fun c -> print_endline (Combo.to_string c)) combos
+  print_endline "--------------------"
+
 let rec bindings_to_string (bindings : Move.t list) i =
-  Sdlkeycode.to_string (List.nth bindings i).keycode 
-  ^ " -> " ^ (List.nth bindings i).name ^ "\n" ^
+  let key = Sdlkeycode.to_string (List.nth bindings i).keycode in
+  let move = (List.nth bindings i).name in
+  String.lowercase_ascii key ^ " -> " ^ move ^ 
   if List.length bindings > i + 1 then
-    bindings_to_string bindings (i + 1)
+    "\n" ^ bindings_to_string bindings (i + 1)
   else
     ""
 
+let print_key_mapping bindings =
+  print_endline "Key mappings:";
+  print_endline (bindings_to_string bindings 0);
+  print_endline "--------------------"
 
 let get_args () =
   "grammars/mk9.gmr"
@@ -13,7 +23,8 @@ let get_args () =
 let main () =
   let args = get_args () in
   let bindings, combos = Parser.parse_grammar args in
-  let _ = print_endline (bindings_to_string bindings 0) in
+  let _ = print_key_mapping bindings in
+  let _ = print_combo combos in
   let machine = Machine.create bindings combos in
   let _ = Game.run machine in
   ()

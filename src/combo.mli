@@ -4,3 +4,5 @@ type t = {
 }
 
 val _new : string -> Move.t list list -> t
+
+val to_string : t -> string
