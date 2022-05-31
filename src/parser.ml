@@ -15,7 +15,7 @@ let get_combos combos bindings =
   List.map split_combos (List.filter (fun a -> not(String.equal a "")) (String.split_on_char '\n' combos))
 
 let split_grammar s =
-  let l = String.split_on_char '/' s in
+  let l = String.split_on_char '|' s in
   let bindings = l |> List.hd in
   let combos = List.nth l 1 in
   bindings, combos
@@ -31,4 +31,3 @@ let parse_grammar grammar_file =
   let bindings = get_bindings bindings in
   let combos = get_combos combos bindings in
   bindings, combos
-
