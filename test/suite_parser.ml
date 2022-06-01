@@ -7,11 +7,11 @@ let with_valid_gmr _ =
 
 let with_no_bindings _ =
   let file_name = "grammars/test/missing_bindings.gmr" in
-  assert_raises (Sys_error file_name) (fun () -> Parser.parse_grammar file_name)
+  assert_raises (Shared.Invalid_grammar ("key not found in grammar: Down")) (fun () -> Parser.parse_grammar file_name)
 
 let with_no_comma _ =
   let file_name = "grammars/test/missing_comma.gmr" in
-  assert_raises (Sys_error file_name) (fun () -> Parser.parse_grammar file_name)
+  assert_raises (Shared.Invalid_grammar ("key not found in grammar: LeftLeft")) (fun () -> Parser.parse_grammar file_name)
 
 let with_no_name _ =
   let file_name = "grammars/test/missing_name.gmr" in
@@ -19,11 +19,11 @@ let with_no_name _ =
 
 let with_no_pipe _ =
   let file_name = "grammars/test/missing_pipe.gmr" in
-  assert_raises (Sys_error file_name) (fun () -> Parser.parse_grammar file_name)
+  assert_raises (Shared.Invalid_grammar ("Bad formating in grammar file")) (fun () -> Parser.parse_grammar file_name)
 
 let with_no_semicolomn _ =
   let file_name = "grammars/test/missing_semicolomn.gmr" in
-  assert_raises (Sys_error file_name) (fun () -> Parser.parse_grammar file_name)
+  assert_raises (Shared.Invalid_grammar ("Bad formating in grammar file")) (fun () -> Parser.parse_grammar file_name)
 
 let tests =
   "suite_parser" >::: [

@@ -21,6 +21,7 @@ let get_args () =
   "grammars/mk9.gmr"
 
 let main () =
+  try
   let args = get_args () in
   let bindings, combos = Parser.parse_grammar args in
   let _ = print_key_mapping bindings in
@@ -29,5 +30,9 @@ let main () =
   let _ = print_endline (Machine.to_string machine) in
   let _ = Game.run machine in
   ()
+  with
+   | Sys_error str -> prerr_string str
+   | Shared.Invalid_grammar str -> prerr_string str
+
 
 let () = main ()

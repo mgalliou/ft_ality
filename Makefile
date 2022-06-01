@@ -5,11 +5,12 @@ OCAMLC        = ocamlc
 OCAMLOPT      = ocamlopt
 OCAMLFIND     = ocamlfind
 INCLUDES      = -I $(SRC_DIR) -I $(TST_DIR) -I $(OBJ_DIR)
-OCAMLTOPFLAGS = $(INCLUDES) -linkpkg -package sdl2
+OCAMLTOPFLAGS = $(INCLUDES) -linkpkg -package sdl2,ounit2
 SRC_DIR       = src
 TST_DIR       = test
 OBJ_DIR       = obj
 SRC_NAME      = \
+				shared.ml\
 				move.ml\
 				combo.ml\
 				state.ml\
@@ -17,8 +18,16 @@ SRC_NAME      = \
 		        machine.ml\
 		        game.ml\
 		        ft_ality.ml
-INT_NAME      = $(SRC_NAME:.ml=.mli)
+INT_NAME      = \
+				move.mli\
+				combo.mli\
+				state.mli\
+		        parser.mli\
+		        machine.mli\
+		        game.mli\
+		        ft_ality.mli
 TST_NAME      = \
+				suite_parser.ml\
                 test.ml
 OBJ_NAME      = $(SRC_NAME:.ml=.cmx)
 INT_OBJ_NAME  = $(INT_NAME:.mli=.cmi)

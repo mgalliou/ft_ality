@@ -1,4 +1,4 @@
 S src
 S test
 B obj
-PKG ounit2
+PKG ounit2 sdl2
