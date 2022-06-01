@@ -1,0 +1,40 @@
+q;Block
+down;Down
+w;Flip Stance
+left;Left
+right;Right
+e;Tag
+a;Throw
+up;Up
+s[BK]
+d;[BP]
+z;[FK]
+x;[FP]
+|
+Upercut (Scorpion);Down+[BP]
+Chest swipe (Scorpion);Left+[BP]
+Head Chop (Scorpion);Right+[BP]
+Straight stab (Scorpion);Left+[FP]
+Backfist (Scorpion);Right+[FP]
+Spinning Low kick (Scorpion);Left+[FK]
+Back spin kick (Scorpion);Right+[BK]
+Splits kick (Scorpion);Up+[BK]
+Sweeps (Scorpion);Left+[BK]
+Throw (towards) (Scorpion);Right+Throw
+(Flame) Spear (Scorpion);Left,Left,[FP]
+Demon/Hell Fire (Scorpion);Down,Left,[BP]
+Teleport/Flameport (Scorpion);Down,Left,[FK]
+Takedown/Takeout (Scorpion);Down,Left,[BK]
+Scorpion Sting (Scorpion);Flip Stance+Block
+Torment (Scorpion);[FP],[FP],[FP]
+Damnation (Scorpion);[FP],[FP],[BK]
+Brimstone (Scorpion);[BP],[FP],[BP]
+Gravedigger (Scorpion);[BP],[FP]+[BP]
+Doom Blade (Scorpion);Right+[BP],[FP],[BK]
+Dead End (Scorpion);[FK],[FK],[BK]
+Grievance (Scorpion);Right+[BK],[FK]
+Split Decision (Scorpion);Right,Down,Right,[BP]
+Nether Gate (Scorpion);Left,Right,Left,[FK]
+Toasty (Klassic Fatality) (Scorpion);Down,Up,Up,[BP]
+Babality (Scorpion);Down,Left,Right,Down,[BP]
+Stage Fatality (Scorpion);Right,Up,Up,[FP]

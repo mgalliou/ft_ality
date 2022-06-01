@@ -1,24 +1,33 @@
+exception Invalid_grammar of string
+
+let split_on_semicolon = String.split_on_char ';'
+
+let get_lines str =
+  List.filter (fun a -> not(String.equal "" a)) (String.split_on_char '\n' str)
+
 let get_bindings bindings =
-  List.map (fun a ->
-    let l = String.split_on_char ';' a in
+  let split_move str =
+    let l = split_on_semicolon str in
     Move._new (List.nth l 1) (List.hd l)
-  ) (List.filter (fun a -> not(String.equal a "")) (String.split_on_char '\n' bindings))
+    in
+  List.map split_move (bindings |> get_lines)
 
 let get_combos combos bindings =
+  let move_map str =
+    List.map (Move.get_move bindings) (String.split_on_char '+' str)
+  in
   let split_moves str =
-    List.map (fun b -> List.map (Move.get_move bindings) (String.split_on_char '+' b))(String.split_on_char ',' str)
+    List.map move_map (String.split_on_char ',' str)
   in
   let split_combos str =
-    let tmp = String.split_on_char ';' str in
+    let tmp = split_on_semicolon str in
     Combo._new (tmp |> List.hd) (split_moves (List.nth tmp 1))
   in
-  List.map split_combos (List.filter (fun a -> not(String.equal a "")) (String.split_on_char '\n' combos))
+  List.map split_combos (combos |> get_lines)
 
-let split_grammar s =
-  let l = String.split_on_char '|' s in
-  let bindings = l |> List.hd in
-  let combos = List.nth l 1 in
-  bindings, combos
+let split_grammar str =
+  let tmp = String.split_on_char '|' str in
+  (tmp |> List.hd, List.nth tmp 1)
 
 let get_file file =
   let in_ch = open_in file in
@@ -27,7 +36,11 @@ let get_file file =
   s
 
 let parse_grammar grammar_file =
-  let bindings, combos = split_grammar (get_file grammar_file) in
-  let bindings = get_bindings bindings in
+  let ( bindings, combos) = try split_grammar (get_file grammar_file) with
+   | Sys_error str -> raise (Invalid_grammar (str ^ " in " ^ grammar_file))
+  in
+  let bindings = try get_bindings bindings with
+   | Sys_error str -> raise (Invalid_grammar (str ^ " in " ^ grammar_file))
+  in
   let combos = get_combos combos bindings in
   bindings, combos
