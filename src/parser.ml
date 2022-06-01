@@ -14,10 +14,10 @@ let get_bindings bindings =
   (** might throw exception Failure("nth") if no ";" on one line **)
 let get_combos combos bindings =
   let move_map str =
-    List.map (Move.get_move bindings) (String.split_on_char '+' str)
+    (String.split_on_char '+' str)
   in
   let split_moves str =
-    List.map move_map (String.split_on_char ',' str)
+    String.split_on_char ',' str
   in
   let split_combos str =
     let tmp = split_on_semicolon str in

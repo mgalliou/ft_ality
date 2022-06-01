@@ -1,5 +1,5 @@
 type t = {
-  alphabet : Move.t list;
+  alphabet : string list;
   states : State.t list;
   start : State.t;
   regoc : State.t list

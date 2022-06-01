@@ -5,10 +5,9 @@ type t = {
   regoc : State.t list
 }
 
-let gen_states alphabet combos =
+(*let gen_states alphabet combos =
   let states = List.map (fun i -> if State._new [i]) alphabet in
       states
-
 
 let gen_recog_states combos =
   []
@@ -18,17 +17,18 @@ let gen_start_state alphabet combos =
     input_line = [];
     to_states = List.map (fun i -> 
         (i, State._new [i])
+*)
 
 
 let create bindings combos = 
   let alphabet = List.map (fun (a : Move.t ) -> a.name) bindings in
-  let start_state = gen_start_state alphabet combos in
-  let states = gen_states alphabet combos in
+(*  let start_state = gen_start_state alphabet combos in *)
+  (*let states = gen_states alphabet combos in*)
   {
     alphabet = alphabet;
-    states = states;
+    states = [];
     start =  State.idle;
-    regoc = gen_recog_states combos
+    regoc = []
   }
 
 let to_string m = 

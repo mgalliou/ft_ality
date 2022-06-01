@@ -1,8 +1,8 @@
 type t = {
   name : string;
-  input : Move.t list list
+  input : string list 
 }
 
-val _new : string -> Move.t list list -> t
+val _new : string -> string list -> t
 
 val to_string : t -> string

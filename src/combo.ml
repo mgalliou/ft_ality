@@ -1,6 +1,6 @@
 type t = {
   name : string;
-  input : Move.t list list
+  input : string list
 }
 
 let _new name input = {
@@ -8,14 +8,14 @@ let _new name input = {
   input = input
 }
 
-let rec comb_to_string (comb: Move.t list) j =
-  (List.nth comb j).name ^ if List.length comb > j + 1 then
+let rec comb_to_string (comb: string list) j =
+  (List.nth comb j) ^ if List.length comb > j + 1 then
     "+" ^ comb_to_string comb (j + 1)
   else
-    "" 
+    ""
 
-let rec input_to_string (input : Move.t list list) i =
-  comb_to_string (List.nth input i) 0 ^ if List.length input > i + 1 then
+let rec input_to_string (input : string list) i =
+  (List.nth input i) ^ if List.length input > i + 1 then
     "," ^ input_to_string input (i + 1)
   else
     ""
