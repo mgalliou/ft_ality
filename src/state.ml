@@ -1,9 +1,14 @@
 type t = {
-  name : string;
-  combo : Combo.t
+  input_line : string list;
 }
 
 let idle = {
-  name = "IDLE";
-  combo = Combo._new "IDLE" []
+  input_line = [];
+  to_states = []
 }
+
+let _new input_line =
+  {
+    input_line = input_line;
+        to_states = []
+  }
