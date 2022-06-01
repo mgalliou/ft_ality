@@ -23,13 +23,11 @@ let create bindings combos =
     regoc = gen_recog_states combos
   }
 
-(*
-let to_string t = 
-  let rec alphabet_to_string alphabet i =
-    (List.nth alphabet i).move ^ "," ^ alphabet_to_string alphabet i + 1
-  sprintf "alphabet: %s\nstates: %s\n start: %s\n regoc: %s"
-  alphabet_to_string
-  states
-  start
-  recog
-*)
+let to_string m = 
+  let rec alphabet_to_string (a : Move.t list) i =
+    (List.nth a i).name ^ if List.length a > i + 1  then
+      "," ^ alphabet_to_string a (i + 1)
+    else
+      ""
+  in
+  "alphabet: " ^ alphabet_to_string m.alphabet 0
