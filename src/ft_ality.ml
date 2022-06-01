@@ -1,6 +1,6 @@
 let print_combo combos =
   print_endline "Combos:";
-  List.iter (fun c -> print_endline (Combo.to_string c)) combos
+  List.iter (fun c -> print_endline (Combo.to_string c)) combos;
   print_endline "--------------------"
 
 let rec bindings_to_string (bindings : Move.t list) i =
