@@ -1,8 +1,7 @@
 type t = {
   alphabet : string list;
-  states : State.t list;
-  start : State.t;
-  regoc : State.t list
+  bindings : Move.t list;
+  states : State.t;
 }
 
 (*let gen_states alphabet combos =
@@ -19,16 +18,15 @@ let gen_start_state alphabet combos =
         (i, State._new [i])
 *)
 
-
 let create bindings combos = 
   let alphabet = List.map (fun (a : Move.t ) -> a.name) bindings in
+  let states = State.generate_all [] alphabet combos in
   (*let start_state = gen_start_state alphabet combos in *)
   (*let states = gen_states alphabet combos in*)
   {
     alphabet = alphabet;
-    states = [];
-    start =  State.idle;
-    regoc = []
+    bindings = bindings;
+    states = states;
   }
 
 let to_string m = 

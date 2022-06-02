@@ -1,8 +1,7 @@
 type t = {
   alphabet : string list;
-  states : State.t list;
-  start : State.t;
-  regoc : State.t list
+  bindings : Move.t list;
+  states : State.t;
 }
 
 val create : Move.t list -> Combo.t list -> t

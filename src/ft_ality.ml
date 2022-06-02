@@ -27,9 +27,6 @@ let main () =
   let _ = print_key_mapping bindings in
   let _ = print_combo combos in
   let machine = Machine.create bindings combos in
-  let states = State.generate_all [] machine.alphabet combos in
-  State.print_states states;
-  Printf.printf "Starting state: %s\n" "test";
   let _ = print_endline (Machine.to_string machine) in
   let _ = Game.run machine in
   ()

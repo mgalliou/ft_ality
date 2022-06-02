@@ -1,6 +1,7 @@
 type t = {
   input_line : string list;
-  transitions: (string * t) list
+  transitions: (string * t) list;
+  combos: Combo.t list;
 }
 
 let rec is_sublist (sublist: string list) (full_list: string list) =
@@ -16,8 +17,13 @@ let check_transition input_line (combos: Combo.t list) =
 
 let idle = {
   input_line = [];
-  transitions = []
-}
+  transitions = [];
+  combos = []
+} 
+
+let get_combos input_line combos =
+  List.filter (fun (c : Combo.t) -> List.equal (String.equal) c.input input_line) combos
+
 
 let rec generate_all (input_line: string list) (alphabet: string list) (combos: Combo.t list) =
   {
@@ -32,7 +38,8 @@ let rec generate_all (input_line: string list) (alphabet: string list) (combos: 
         a, (generate_all new_line alphabet combos)
       else
         a, idle
-      ) alphabet
+      ) alphabet;
+    combos = get_combos input_line combos
   }
 
 let rec print_states (state: t ) =
@@ -46,3 +53,6 @@ let rec print_states (state: t ) =
 
 let check_combo (combos: Combo.t list) input_line =
   List.find (fun (a:Combo.t) -> a.input = input_line) combos
+
+let print_combos s =
+  List.iter (fun c -> print_endline (Combo.to_string c)) s.combos
