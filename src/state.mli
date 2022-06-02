@@ -5,5 +5,5 @@ type t = {
 
 val idle : t
 
-val _new : string list -> string list -> Combo.t list -> t
+val generate_all : string list -> string list -> Combo.t list -> t
 val print_states :  t -> unit

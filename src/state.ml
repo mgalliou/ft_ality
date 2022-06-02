@@ -16,10 +16,10 @@ let check_transition input_line (combos: Combo.t list) =
 
 let idle = {
   input_line = [];
-  transitions= []
+  transitions = []
 }
 
-let rec _new (input_line: string list) (alphabet: string list) (combos: Combo.t list) =
+let rec generate_all (input_line: string list) (alphabet: string list) (combos: Combo.t list) =
   {
     input_line = input_line;
     transitions = List.map (fun a ->
@@ -29,7 +29,7 @@ let rec _new (input_line: string list) (alphabet: string list) (combos: Combo.t 
         input_line@[a]
       in
       if check_transition new_line combos then
-        a, (_new new_line alphabet combos)
+        a, (generate_all new_line alphabet combos)
       else
         a, idle
       ) alphabet
