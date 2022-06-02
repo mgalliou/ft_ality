@@ -20,7 +20,7 @@ let gen_start_state alphabet combos =
 
 let create bindings combos = 
   let alphabet = List.map (fun (a : Move.t ) -> a.name) bindings in
-  let states = State.generate_all [] alphabet combos in
+  let states = State.generate_all alphabet combos [] in
   (*let start_state = gen_start_state alphabet combos in *)
   (*let states = gen_states alphabet combos in*)
   {

@@ -6,8 +6,8 @@ type t = {
 
 val idle : t
 
-val generate_all : string list -> string list -> Combo.t list -> t
+val generate_all : string list -> Combo.t list -> string list -> t
 
-val print_states :  t -> unit
+val print_states : t -> unit
 
 val print_combos : t -> unit
