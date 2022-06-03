@@ -18,7 +18,22 @@ let print_key_mapping bindings =
   print_endline "--------------------"
 
 let get_args () =
-  "grammars/mk9.gmr"
+    let usage_msg = "usage: ft_ality [-h] grammarfile" in
+    let input_strs = ref [] in
+    let help = ref false in
+    let speclist = [
+        ("grammarfile", Arg.Set (ref false) , "\t\tgrammar of the game\n");
+        ("-h, --help", Arg.Set (ref false), "\t\tshow this help message and exit\n");
+        ("-h", Arg.Set help, "");
+        ("--help", Arg.Set help, "");
+        ("-help", Arg.Set (ref false), "")
+    ] in
+    let anon_fun filename = input_strs := !input_strs@[filename]  in
+    let () = Arg.parse speclist anon_fun usage_msg in
+    let grammarfile = List.nth_opt !input_strs 0 in
+    if !help || Option.is_none grammarfile then
+        raise (Arg.Help (Arg.usage_string speclist usage_msg));
+    List.nth !input_strs 0
 
 let main () =
   try
@@ -31,6 +46,7 @@ let main () =
   let _ = Game.run machine in
   ()
   with
+   | Arg.Help e -> print_string e
    | Sys_error str -> prerr_string str
    | Shared.Invalid_grammar str -> prerr_string str
 

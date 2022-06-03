@@ -15,7 +15,7 @@ let new_state_with_event e state (machine : Machine.t) =
   | Sdlevent.KeyUp e -> 
     let input_str = input_str_from_key_event e machine.bindings in
     let new_state = new_state_with_input_str input_str state machine in
-    let _ =  List.iter print_endline new_state.input_line in
+    let _ = State.print_input_line new_state.input_line in
     let _ = State.print_combos new_state in
     new_state
   | _ -> state

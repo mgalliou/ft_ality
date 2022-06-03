@@ -6,6 +6,8 @@ type t = {
 
 val idle : t
 
+val print_input_line : string list -> unit
+
 val print_states : t -> unit
 
 val print_combos : t -> unit
