@@ -47,8 +47,8 @@ let main () =
   ()
   with
    | Arg.Help e -> print_string e
-   | Sys_error str -> prerr_string str
-   | Shared.Invalid_grammar str -> prerr_string str
+   | Sys_error str -> prerr_endline str
+   | Shared.Invalid_grammar str -> prerr_endline str
 
 
 let () = main ()
