@@ -11,7 +11,7 @@ let idle = {
 }
 
 let rec print_input_line = function
-    | [] -> print_endline ""
+    | [] -> ()
     | h::t -> print_string h ; print_string ", " ; print_input_line t
 
 let rec print_states (state: t ) =
