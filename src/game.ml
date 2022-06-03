@@ -1,8 +1,10 @@
-let new_state_with_input_str input (current_state : State.t) (machine : Machine.t) =
-  match List.find (fun (s, t) -> String.equal input s) current_state.transitions with
-  | ("", _) -> machine.states
-  | (_, state) when state.input_line = [] -> machine.states
-  | (input_str, to_state) -> to_state
+let rec new_state_with_input_str input (current_state : State.t) (machine : Machine.t) =
+    match List.find (fun (s, t) -> String.equal input s) current_state.transitions with
+    | (_, state) when state.input_line = [] && current_state.input_line = [] ->
+      machine.states
+    | (_, state) when state.input_line = [] -> 
+      new_state_with_input_str input machine.states machine
+    | (input_str, to_state) -> to_state
 
 let input_str_from_key_event (e : Sdlevent.keyboard_event) bindings =
   match List.find_opt (fun (b : Move.t) -> b.keycode = e.keycode) bindings with
