@@ -1,12 +1,10 @@
 type t = {
-  input_line : string list;
-  transitions: (string * t) list;
+  input_line : Input_line.t;
+  transitions: (Move.t list * t) list;
   combos: Combo.t list;
 }
 
 val idle : t
-
-val print_input_line : string list -> unit
 
 val print_states : t -> unit
 

@@ -1,28 +1,20 @@
 type t = {
-  alphabet : string list;
+  alphabet : Move.t list list;
   bindings : Move.t list;
   states : State.t;
 }
 
 let check_transition input_line (combos: Combo.t list) =
-  let rec is_sublist (sublist: string list) (full_list: string list) =
-    match (sublist, full_list) with
-    | ([], _) -> true
-    | (_, []) -> false
-    | (sublist, full_list) when String.equal (List.hd sublist) (List.hd full_list) ->
-        is_sublist (List.tl sublist) (List.tl full_list)
-    | _ -> false
-  in
-  List.exists (fun (a: Combo.t) -> is_sublist input_line (a.input)) combos
+  List.exists (fun (a: Combo.t) -> Input_line.is_subline input_line (a.input)) combos
 
 
 (** return  combos (combo list) with corresponding input_line from a combo list **)
-let combos_with_input_line input_line combos =
-  let l = List.filter (fun (c : Combo.t) -> List.equal (String.equal) c.input input_line) combos in
+let combos_with_input_line (input_line: Input_line.t) combos =
+  let l = List.filter (fun (c : Combo.t) -> Input_line.equal c.input input_line) combos in
   l
 
-let rec generate_states (input_line: string list) (alphabet: string list) (combos: Combo.t list)  =
-  let list_transitions a =
+let rec generate_states (input_line: Input_line.t) (alphabet: Move.t list list) (combos: Combo.t list)  =
+  let list_transitions (a: Move.t list) =
     let new_line = match input_line with
     | [] -> [a]
     | _ -> input_line@[a]
@@ -37,8 +29,18 @@ let rec generate_states (input_line: string list) (alphabet: string list) (combo
     combos = combos_with_input_line input_line combos
   }
 
-let create bindings combos = 
-  let alphabet = List.map (fun (a : Move.t ) -> a.name) bindings in
+let generate_alphabet bindings combos =
+    let filter_input_line input_line =
+        List.filter (fun a -> List.length a > 1) input_line
+    in
+    let combos_with_key_comb = List.map (fun (a : Combo.t) -> filter_input_line a.input ) combos in
+    let combos_with_key_comb = List.filter (fun a -> List.length a > 0) combos_with_key_comb in
+    let extend_alphabet = List.flatten combos_with_key_comb in
+    let extend_alphabet = List.sort_uniq (fun a b -> if Move.list_equal a b then 0 else 1) extend_alphabet in
+    (List.map (fun (a : Move.t ) -> [a]) bindings)@extend_alphabet
+
+let create bindings combos =
+  let alphabet = generate_alphabet bindings combos in
   let states = generate_states [] alphabet combos in
   {
     alphabet = alphabet;
@@ -46,8 +48,9 @@ let create bindings combos =
     states = states;
   }
 
-let to_string m = 
+let to_string m =
   let rec alphabet_to_string a i =
+    |[] -> ""
     (List.nth a i) ^ if List.length a > i + 1  then
       "," ^ alphabet_to_string a (i + 1)
     else

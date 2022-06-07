@@ -14,14 +14,14 @@ let get_bindings bindings =
   (** might throw exception Failure("nth") if no ";" on one line **)
 let get_combos combos bindings =
   let move_map str =
-    (String.split_on_char '+' str)
+      List.map (fun a -> Move._new a (Sdlkeycode.to_string (Move.get_key a bindings))) (String.split_on_char '+' str)
   in
   let split_moves str =
     String.split_on_char ',' str
   in
   let split_combos str =
     let tmp = split_on_semicolon str in
-    Combo._new (tmp |> List.hd) (split_moves (List.nth tmp 1))
+    Combo._new (tmp |> List.hd) (List.map move_map (split_moves (List.nth tmp 1)))
   in
   List.map split_combos (combos |> get_lines)
 

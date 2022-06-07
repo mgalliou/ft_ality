@@ -12,6 +12,7 @@ OBJ_DIR       = obj
 SRC_NAME      = \
 				shared.ml\
 				move.ml\
+				input_line.ml\
 				combo.ml\
 				state.ml\
 		        parser.ml\
@@ -20,6 +21,7 @@ SRC_NAME      = \
 		        ft_ality.ml
 INT_NAME      = \
 				move.mli\
+				input_line.mli\
 				combo.mli\
 				state.mli\
 		        parser.mli\
