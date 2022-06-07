@@ -8,4 +8,4 @@ val generate_states : Input_line.t -> Move.t list list -> Combo.t list -> State.
 
 val create : Move.t list -> Combo.t list -> t
 
-(*val to_string : t -> string*)
+val to_string : t -> string

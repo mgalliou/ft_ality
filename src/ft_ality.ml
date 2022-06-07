@@ -42,7 +42,7 @@ let main () =
   let _ = print_key_mapping bindings in
   let _ = print_combo combos in
   let machine = Machine.create bindings combos in
- (* let _ = print_endline (Machine.to_string machine) in*)
+  let _ = print_endline (Machine.to_string machine) in
   let _ = Game.run machine in
   ()
   with

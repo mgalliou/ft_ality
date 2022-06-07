@@ -49,11 +49,10 @@ let create bindings combos =
   }
 
 let to_string m =
-  let rec alphabet_to_string a i =
-    |[] -> ""
-    (List.nth a i) ^ if List.length a > i + 1  then
-      "," ^ alphabet_to_string a (i + 1)
-    else
-      ""
+  let rec alphabet_to_string = function
+    | [] -> ""
+    | h::t -> Move.list_to_string h
+              ^ (if List.length t > 0 then ", " else "")
+              ^ (alphabet_to_string t)
   in
-  "alphabet: " ^ (alphabet_to_string m.alphabet 0)
+  "alphabet: " ^ (alphabet_to_string m.alphabet)

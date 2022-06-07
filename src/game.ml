@@ -24,8 +24,8 @@ let rec input_loop keys i current_state (machine : Machine.t) =
     | Sdlevent.KeyDown e -> input_loop keys (i + 1) current_state machine
     | Sdlevent.KeyUp e -> let keys = keys@[e.keycode] in
         if (i = 1) then
-            let ret = List.map (input_str_from_key_event machine.bindings) keys in
-            List.filter (fun (a: Move.t) -> a.name = "") ret
+            let input_str = List.map (input_str_from_key_event machine.bindings) keys in
+            List.filter (fun (a : Move.t) -> a.name <> "") input_str
         else
             input_loop keys (i - 1) current_state machine
     | _ -> input_loop keys i current_state machine
