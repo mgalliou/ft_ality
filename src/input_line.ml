@@ -3,7 +3,7 @@ type t = Move.t list list
 let rec to_string = function
     | [] -> ""
     | h::t -> (Move.list_to_string h) 
-              ^ (if List.length t > 0 then "," else "")
+              ^ ","
               ^ to_string t
 
 let rec is_subline (a : t) (b : t) =
