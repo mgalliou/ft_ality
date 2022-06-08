@@ -4,8 +4,9 @@ type t = {
   states : State.t;
 }
 
-val generate_states : Input_line.t -> Move.t list list -> Combo.t list -> State.t
+val generate_alphabet : Combo.t list -> Move.t list -> Move.t list list
 
-val create : Move.t list -> Combo.t list -> t
+val generate_states : Move.t list list -> Combo.t list -> Input_line.t -> State.t
 
 val to_string : t -> string
+

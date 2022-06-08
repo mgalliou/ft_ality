@@ -37,14 +37,19 @@ let get_args () =
 
 let main () =
   try
-  let args = get_args () in
-  let bindings, combos = Parser.parse_grammar args in
-  let _ = print_key_mapping bindings in
-  (*let _ = print_combo combos in*)
-  let machine = Machine.create bindings combos in
-  (*let _ = print_endline (Machine.to_string machine) in*)
-  let _ = Game.run machine in
-  ()
+    let args = get_args () in
+    let bindings, combos = Parser.parse_grammar args in
+    let _ = print_key_mapping bindings in
+    (*let _ = print_combo combos in*)
+    let alphabet = Machine.generate_alphabet combos bindings in
+    let (machine : Machine.t) = {
+      alphabet = alphabet;
+      bindings = bindings;
+      states = Machine.generate_states alphabet combos []
+    }
+    in
+    (*let _ = print_endline (Machine.to_string machine) in*)
+    Game.run machine;
   with
    | Arg.Help e -> print_string e
    | Sys_error str -> prerr_endline str
