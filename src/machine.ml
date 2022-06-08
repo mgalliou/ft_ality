@@ -10,8 +10,7 @@ let check_transition input_line (combos: Combo.t list) =
 
 (** return  combos (combo list) with corresponding input_line from a combo list **)
 let combos_with_input_line (input_line: Input_line.t) combos =
-  let l = List.filter (fun (c : Combo.t) -> Input_line.equal c.input input_line) combos in
-  l
+  List.filter (fun (c : Combo.t) -> Input_line.equal c.input input_line) combos
 
 let rec generate_states (input_line: Input_line.t) (alphabet: Move.t list list) (combos: Combo.t list)  =
   let list_transitions (a: Move.t list) =

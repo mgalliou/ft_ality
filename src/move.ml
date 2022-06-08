@@ -31,7 +31,7 @@ let equal a b =
         false
 
 let list_equal a b =
-    List.equal (equal) a b
+    (List.length a = List.length b) && (List.for_all (fun c -> List.mem c b) a)
 
 let rec list_to_string = function
     | [] -> ""
