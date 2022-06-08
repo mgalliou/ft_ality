@@ -14,17 +14,19 @@ let generate_alphabet combos bindings =
     )
 
 let rec generate_states alphabet combos (input_line: Input_line.t) =
+  let check_transition input_line (combos: Combo.t list) =
+    List.exists (fun (a: Combo.t) -> Input_line.is_subline input_line (a.input)) combos
+  in
+
   let list_transitions (a: Move.t list) =
     (* check if input line exist as a subcombo *)
-    match combos |> List.exists (fun (a : Combo.t) ->
-      a.input |> Input_line.is_subline input_line )
-    with
-        | false -> a, State.idle
-        | true -> a, (generate_states alphabet combos (match input_line with
-            | [] -> [a]
-            | _ -> input_line@[a]
-          )
-        )
+    let new_line = match input_line with
+    | [] -> [a]
+    | _ -> input_line@[a]
+    in
+    match check_transition new_line combos with
+    | true -> a, (generate_states alphabet combos new_line)
+    | false -> a, State.idle
   in
     {
       input_line = input_line;
