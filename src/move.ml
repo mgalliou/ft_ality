@@ -3,7 +3,7 @@ type t = {
   keycode : Sdlkeycode.t
 }
 
-let _new name key_str =
+let _new (key_str, name) =
   if name = "" then
     raise (Shared.Invalid_grammar ("Key name cannot be empty"))
   else

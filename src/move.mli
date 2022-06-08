@@ -3,11 +3,11 @@ type t = {
   keycode : Sdlkeycode.t
 }
 
+val _new : string * string -> t
+
 val get_key : string -> t list -> Sdlkeycode.t
 
 val get_move : t list -> string -> t
-
-val _new : string -> string -> t
 
 val equal :t -> t -> bool
 
